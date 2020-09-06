@@ -6,7 +6,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '../styles.css'
 
 
-const Nominations = props => {
+const NominationsBar = props => {
 
     return (
 
@@ -55,4 +55,4 @@ const Nominations = props => {
     )
 }
 
-export default Nominations
+export default NominationsBar

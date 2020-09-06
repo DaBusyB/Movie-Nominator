@@ -38,8 +38,46 @@ body {
     margin: 50px 0px 0px 0px;
 }
 
-/* MovieCard */
+/* MoviePanel */
 .card {
     height: 450px;
     margin-bottom: 15px;
+}
+
+.movie_panel_button:before {
+    content: '√';
+
+}
+
+.movie_panel_button {
+    /* content: '√'; */
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-weight: bold;
+    background-color: #73D080;
+    border: 2px solid #4f8f58; 
+}
+
+.movie_panel_button:hover {
+    
+    background-color: #4f8f58;
+    border: 2px solid #73D080;
+    
+}
+
+.button_toggle {
+    color: white;
+    background-color: #DB3D44;
+    border: 2px solid #d6272e;
+    
+}
+
+.button_toggle:before {
+    content: none;
+}
+
+.button_toggle:after {
+    content: 'X';
+    
 }

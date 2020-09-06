@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
 // Styles
-import { Container, Row } from "reactstrap";
+import { Container, Row, Button} from "reactstrap";
 import '../styles.css'
 
 // Import Components
 import MoviePanel from './MoviePanel.js'
 import SearchBar from './SearchBar.js'
-import Nominations from './Nominations'
+import NominationsBar from './NominationsBar'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
@@ -25,12 +25,19 @@ export default function MovieContainer() {
         setTitleSearch(normalizeSearchData(event.target.value))
     }
 
+    const nominationsButton = movieItem => {
+        console.log('in the button')
+        // Button.classList.add('')
+        console.log(movieItem.target)
+        movieItem.target.classList.toggle('button_toggle')
+    }
+
     useEffect(() => {
         axios
         .get(`http://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
             .then((res) => {
                 console.log('axios success:', res.data.Search)
-                
+
                 res.data.Search === undefined ?
                     // res.data.Search will be undefined at times while searching
                     // here we provide something for users to see until search returns something
@@ -52,12 +59,13 @@ export default function MovieContainer() {
 
             <Container className='container'>
                 <Row>
-                    <Nominations />
+                    <NominationsBar />
                     {
                         movies.map( movie => {
-                            return <MoviePanel key={movie.imdbID} movieInfo={movie} />
+                            return <MoviePanel key={movie.imdbID} movieInfo={movie} selector={nominationsButton} />
                         })
                     }
+                    
                 </Row>
             </Container>
         </div>
