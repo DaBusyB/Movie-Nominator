@@ -3,12 +3,15 @@ import axios from 'axios'
 
 // Styles
 import { Container, Row } from "reactstrap";
+import '../styles.css'
 
 // Import Components
 import MovieCard from './MovieCard.js'
+import SearchBar from './SearchBar.js'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
+    // const [title, setTitle] = useState([])
 
     useEffect(() => {
         axios
@@ -23,14 +26,20 @@ export default function MovieContainer() {
     }, [])
 
     return (
-        <Container>
-            <Row>
-                {
-                    movies.map( movie => {
-                        return <MovieCard key={movie.imdbID} movieInfo={movie} />
-                    })
-                }
-            </Row>
-        </Container>
+        <div className='search_movie_container'>
+            <h1 className='title'>Shoppies Movie Nominations</h1>
+
+            <SearchBar />
+
+            <Container className='container'>
+                <Row>
+                    {
+                        movies.map( movie => {
+                            return <MovieCard key={movie.imdbID} movieInfo={movie} />
+                        })
+                    }
+                </Row>
+            </Container>
+        </div>
     )
 }
