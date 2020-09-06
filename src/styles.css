@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:700i|Source+Sans+Pro&display=swap");
+
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.app_container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+}

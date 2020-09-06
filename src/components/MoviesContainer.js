@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
+// Styles
+import { Container, Row } from "reactstrap";
+
 // Import Components
 import MovieCard from './MovieCard.js'
 
@@ -20,10 +23,14 @@ export default function MovieContainer() {
     }, [])
 
     return (
-        <div>
-            {
-                movies.map( movie => ( <MovieCard key={movie.imdbID} movie={movie} /> ) )
-            }
-        </div>
+        <Container>
+            <Row>
+                {
+                    movies.map( movie => {
+                        return <MovieCard key={movie.imdbID} movieInfo={movie} />
+                    })
+                }
+            </Row>
+        </Container>
     )
 }
