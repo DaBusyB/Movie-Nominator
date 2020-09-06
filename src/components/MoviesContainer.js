@@ -8,6 +8,7 @@ import '../styles.css'
 // Import Components
 import MoviePanel from './MoviePanel.js'
 import SearchBar from './SearchBar.js'
+import Nominations from './Nominations'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
@@ -51,6 +52,7 @@ export default function MovieContainer() {
 
             <Container className='container'>
                 <Row>
+                    <Nominations />
                     {
                         movies.map( movie => {
                             return <MoviePanel key={movie.imdbID} movieInfo={movie} />
