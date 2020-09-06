@@ -13,6 +13,10 @@ export default function MovieContainer() {
     const [movies, setMovies] = useState([])
     const [titleSearch, setTitleSearch] = useState(`star+wars`)
 
+    const searchHandler = event => {
+        setTitleSearch(event.target.value)
+    }
+
     useEffect(() => {
 
         axios
@@ -24,11 +28,7 @@ export default function MovieContainer() {
             .catch((err) => {
                 // setMovies(`${titleSearch} cannot be found, try again`)
             })
-    }, [movies])
-
-    const searchHandler = event => {
-        setTitleSearch(event.target.value)
-    }
+    }, [titleSearch])
 
     return (
         <div className='search_movie_container'>
@@ -39,10 +39,15 @@ export default function MovieContainer() {
             <Container className='container'>
                 <Row>
                     {
-                        movies.map( movie => {
-                            return <MovieCard key={movie.imdbID} movieInfo={movie} />
-                        })
+                        movies === undefined ?
+                            console.log('movies is undefined')
+                        :
+                            movies.map( movie => {
+                                return <MovieCard key={movie.imdbID} movieInfo={movie} />
+                            })
+                        
                     }
+                    
                 </Row>
             </Container>
         </div>
