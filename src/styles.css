@@ -13,3 +13,8 @@ body {
     /* justify-content: center;
     align-items: center; */
 }
+
+.card {
+    height: 450px;
+    margin-bottom: 15px;
+}
