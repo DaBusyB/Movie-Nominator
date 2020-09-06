@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
 // Import Components
-// import MovieCard from './MovieCard.js'
+import MovieCard from './MovieCard.js'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
-    
 
     useEffect(() => {
         axios
