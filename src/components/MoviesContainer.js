@@ -11,25 +11,30 @@ import SearchBar from './SearchBar.js'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
-    // const [title, setTitle] = useState([])
+    const [titleSearch, setTitleSearch] = useState(`star+wars`)
 
     useEffect(() => {
+
         axios
-            .get(`http://omdbapi.com/?s=star+wars&apikey=82e86859`)
+        .get(`http://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
             .then((res) => {
                 // console.log('axios success:', res.data.Search)
                 setMovies(res.data.Search)
             })
             .catch((err) => {
-                console.log(err)
+                // setMovies(`${titleSearch} cannot be found, try again`)
             })
-    }, [])
+    }, [movies])
+
+    const searchHandler = event => {
+        setTitleSearch(event.target.value)
+    }
 
     return (
         <div className='search_movie_container'>
             <h1 className='title'>Shoppies Movie Nominations</h1>
 
-            <SearchBar />
+            <SearchBar handler={searchHandler}/>
 
             <Container className='container'>
                 <Row>
