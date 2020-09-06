@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Styling
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';

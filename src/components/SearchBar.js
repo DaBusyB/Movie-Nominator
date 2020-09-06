@@ -18,7 +18,7 @@ const SearchBar = props => {
                   </InputGroupAddon> */}
                   <Input
                     className=" form-control-alternative"
-                    placeholder="Search For a Movie!"
+                    placeholder="Search For a Movie to Nominate!"
                     type="text"
                     onChange={props.handler}
                     

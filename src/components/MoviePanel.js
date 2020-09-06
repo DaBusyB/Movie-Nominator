@@ -7,7 +7,7 @@ import '../styles.css'
 // Import Components
 // import SelectButton from './SelectButton'
 
-const MovieCard = props => {
+const MoviePanel = props => {
 
 
     return (
@@ -23,4 +23,4 @@ const MovieCard = props => {
     )
 }
 
-export default MovieCard
+export default MoviePanel

@@ -6,12 +6,12 @@ import { Container, Row } from "reactstrap";
 import '../styles.css'
 
 // Import Components
-import MovieCard from './MovieCard.js'
+import MoviePanel from './MoviePanel.js'
 import SearchBar from './SearchBar.js'
 
 export default function MovieContainer() {
     const [movies, setMovies] = useState([])
-    const [titleSearch, setTitleSearch] = useState(`star+wars`)
+    const [titleSearch, setTitleSearch] = useState([])
 
     //normalize all search events by replacing spaces with '+'
     const normalizeSearchData = event => {
@@ -43,19 +43,6 @@ export default function MovieContainer() {
             })
     }, [titleSearch])
 
-    // useEffect(() => {
-
-    //     axios
-    //     .get(`http://omdbapi.com/?s=${black panther}&apikey=82e86859`)
-    //         .then((res) => {
-    //             // console.log('axios success:', res.data.Search)
-                
-    //         })
-    //         .catch((err) => {
-    //             // setMovies(`${titleSearch} cannot be found, try again`)
-    //         })
-    // }, [])
-
     return (
         <div className='search_movie_container'>
             <h1 className='title'>Shoppies Movie Nominations</h1>
@@ -65,13 +52,10 @@ export default function MovieContainer() {
             <Container className='container'>
                 <Row>
                     {
-                        
-                            movies.map( movie => {
-                                return <MovieCard key={movie.imdbID} movieInfo={movie} />
-                            })
-                        
+                        movies.map( movie => {
+                            return <MoviePanel key={movie.imdbID} movieInfo={movie} />
+                        })
                     }
-                    
                 </Row>
             </Container>
         </div>
