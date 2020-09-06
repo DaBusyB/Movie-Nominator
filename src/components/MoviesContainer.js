@@ -25,11 +25,10 @@ export default function MovieContainer() {
         setTitleSearch(normalizeSearchData(event.target.value))
     }
 
-    const nominationsButton = movieItem => {
-        console.log('in the button')
-        // Button.classList.add('')
-        console.log(movieItem.target)
-        movieItem.target.classList.toggle('button_toggle')
+    const nominationsButton = event => {
+        console.log('in the button', event.target.classList)
+        event.target.classList.remove('btn-secondary')
+        event.target.classList.toggle('button_toggle')
     }
 
     useEffect(() => {
@@ -62,7 +61,9 @@ export default function MovieContainer() {
                     <NominationsBar />
                     {
                         movies.map( movie => {
-                            return <MoviePanel key={movie.imdbID} movieInfo={movie} selector={nominationsButton} />
+                            return (
+                                    <MoviePanel key={movie.imdbID} movieInfo={movie} button={nominationsButton} />
+                            )
                         })
                     }
                     

@@ -5,6 +5,7 @@ import {FormGroup, Input, InputGroup} from 'reactstrap';
 
 const SearchBar = props => {
 
+
     return (
         <div className='searchBar'>
             <FormGroup
@@ -18,7 +19,7 @@ const SearchBar = props => {
                   </InputGroupAddon> */}
                   <Input
                     className=" form-control-alternative"
-                    placeholder="Search For a Movie to Nominate!"
+                    placeholder="Search Movie Titles to Nominate!"
                     type="text"
                     onChange={props.handler}
                     

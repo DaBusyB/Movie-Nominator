@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {useState} from 'react'
 
 // Styles
-import {Card, CardImg, CardBody, CardTitle, Button, Col, Alert} from 'reactstrap';
+import {Card, CardImg, CardBody, CardTitle, Button, Col} from 'reactstrap';
 import '../styles.css'
 
 // Import Components
@@ -10,13 +9,19 @@ import '../styles.css'
 
 const MoviePanel = props => {
 
-
     return (
         <Col xs='6' md='4' xl='3'>
             <Card className='card'>
-                <Button onClick={props.selector } className='movie_panel_button'></Button>
-                <CardTitle>{props.movieInfo.Title} {props.movieInfo.Year}</CardTitle>
                 <CardBody>
+                <Button 
+                    id='button' 
+                    onClick={props.button} 
+                    className='movie_panel_button'>
+
+                    {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}
+                </Button>
+                
+                <CardTitle className='cardTitle'>{props.movieInfo.Title} ({props.movieInfo.Year})</CardTitle>
                     <CardImg top width='18.75%' src={props.movieInfo.Poster} alt='Movie poster picture' />
                 </CardBody>
             </Card>
@@ -24,16 +29,5 @@ const MoviePanel = props => {
     )
 }
 
-Alert.propTypes = {
-    className: PropTypes.string,
-    closeClassName: PropTypes.string,
-    isOpen: PropTypes.bool,  // default: true
-    toggle: PropTypes.func,
-    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    fade: PropTypes.bool, // default: true
-    // Controls the transition of the alert fading in and out
-    // See Fade for more details
-    // transition: PropTypes.shape(Fade.propTypes),
-  }
 
 export default MoviePanel
