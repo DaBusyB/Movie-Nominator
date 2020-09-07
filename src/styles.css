@@ -91,3 +91,8 @@ body {
 .button_toggle:after {
     content: 'X';
 }
+
+.inactive {
+    pointer-events: none;
+}
+

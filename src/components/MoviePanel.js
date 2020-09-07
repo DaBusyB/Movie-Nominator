@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 // Styles
 import {Card, CardImg, CardBody, CardTitle, Button, Col} from 'reactstrap';
@@ -20,7 +20,7 @@ const MoviePanel = props => {
 
                     {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}
                 </Button>
-                
+
                 <CardTitle className='cardTitle'>{props.movieInfo.Title} ({props.movieInfo.Year})</CardTitle>
                     <CardImg top width='18.75%' src={props.movieInfo.Poster} alt='Movie poster picture' />
                 </CardBody>

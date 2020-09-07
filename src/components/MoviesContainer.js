@@ -25,17 +25,27 @@ export default function MovieContainer() {
         setTitleSearch(normalizeSearchData(event.target.value))
     }
 
+    let count = 0;
     const nominationsButton = event => {
-        console.log('in the button', event.target.classList)
         event.target.classList.remove('btn-secondary')
-        event.target.classList.toggle('button_toggle')
+
+        if(count > -1 && count < 5 && event.target.classList.contains('counted') === false) {
+            event.target.classList.toggle('button_toggle')
+            event.target.classList.add('counted')
+            count++
+            // console.log(count, event.target.classList.contains('counted'), event.target.classList)
+        } else if(event.target.classList.contains('counted') === true) {
+            event.target.classList.remove('counted')
+            count--
+            // console.log(count, event.target.classList.contains('counted'), event.target.classList)
+        }
     }
 
     useEffect(() => {
         axios
         .get(`http://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
             .then((res) => {
-                console.log('axios success:', res.data.Search)
+                // console.log('axios success:', res.data.Search)
 
                 res.data.Search === undefined ?
                     // res.data.Search will be undefined at times while searching
@@ -66,7 +76,6 @@ export default function MovieContainer() {
                             )
                         })
                     }
-                    
                 </Row>
             </Container>
         </div>
