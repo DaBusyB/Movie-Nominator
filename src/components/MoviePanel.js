@@ -16,7 +16,7 @@ const MoviePanel = props => {
                     <Button
                         id='button'
                         onClick={
-                            props.button
+                            props.handler
                         }
                         className='movie_panel_button'>
                         {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Styles
 import {Card, CardImg, CardBody, CardTitle, CardText, Button, Col} from 'reactstrap';
-import SideNav, { NavItem, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavText, Toggle } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '../styles.css'
 
@@ -20,7 +20,7 @@ const NominationsBar = props => {
             }}
         >
 
-            <SideNav.Toggle />
+            <SideNav.Toggle  />
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavText className='navText'>Your Nominations</NavText>
@@ -33,7 +33,7 @@ const NominationsBar = props => {
                                             <Button
                                                 id='button'
                                                 onClick={
-                                                    props.button
+                                                    props.handler
                                                 }
                                                 className='movie_panel_button'>
                                                 {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}

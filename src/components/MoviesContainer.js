@@ -15,7 +15,7 @@ export default function MovieContainer() {
     const [titleSearch, setTitleSearch] = useState([])
 
     const [nominations, setNominations] = useState([])
-    const [nominationSearch, setNominationSearch] = useState()
+    const [nominationSearch, setNominationSearch] = useState([])
 
     //normalize all search events by replacing spaces with '+'
     const normalizeData = event => {
@@ -27,24 +27,33 @@ export default function MovieContainer() {
         setTitleSearch(normalizeData(event.target.value))
     }
 
-    let count = 0;
-    const nominationsButton = event => {
-        event.target.classList.remove('btn-secondary')
-
-        setNominationSearch(normalizeData(event.target.nextElementSibling.innerText))
-
-        if(count >= 0 && count < 5 && event.target.classList.contains('counted') === false) {
-            event.target.classList.toggle('button_toggle')
-            event.target.classList.add('counted')
-
-            count++
-        } else if(event.target.classList.contains('counted') === true) {
-            // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
-            // delete nominationsArr[]
-            event.target.classList.remove('counted')
-            count--
-        }
+    let nominationsArr =[]
+    const nominationsHandler = event => {
+        let nominatedMovie = event.target.nextElementSibling.innerText
+        nominationsArr.push(normalizeData(nominatedMovie))
+        setNominationSearch(nominationsArr)
+        // console.log('inside',nominationsArr, nominationsArr.length)
+        return nominationsArr
     }
+
+    // let count = 0;
+    // const nominationsButton = event => {
+    //     event.target.classList.remove('btn-secondary')
+
+    //     setNominationSearch(normalizeData(event.target.nextElementSibling.innerText))
+
+    //     if(count >= 0 && count < 5 && event.target.classList.contains('counted') === false) {
+    //         event.target.classList.toggle('button_toggle')
+    //         event.target.classList.add('counted')
+
+    //         count++
+    //     } else if(event.target.classList.contains('counted') === true) {
+    //         // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
+    //         // delete nominationsArr[]
+    //         event.target.classList.remove('counted')
+    //         count--
+    //     }
+    // }
 
     useEffect(() => {
         axios
@@ -65,21 +74,21 @@ export default function MovieContainer() {
             })
     }, [titleSearch])
 
-    useEffect(() => {
-        axios
-        .get(`http://omdbapi.com/?s=${nominationSearch}&apikey=82e86859`)
-            .then((res) => {
-                console.log('nominations', res.data.Search)
-                setNominations(res.data.Search)
-            })
-            .catch((err) => {
-                console.log('axios err:', err)
-                // setMovies(`${titleSearch} cannot be found, try again`)
-            })
-    }, [nominationSearch])
+    // useEffect(() => {
+    //     axios
+    //     .get(`http://omdbapi.com/?s=${nominationSearch}&apikey=82e86859`)
+    //         .then((res) => {
+    //             console.log('nominations', res.data.Search)
+    //             setNominations(res.data.Search)
+    //         })
+    //         .catch((err) => {
+    //             console.log('axios err:', err)
+    //             // setMovies(`${titleSearch} cannot be found, try again`)
+    //         })
+    // }, [nominationSearch])
 
     return (
-        <div className='search_movie_container'>
+        <div className='movie_container'>
             <h1 className='title'>Shoppies Movie Nominations</h1>
 
             <SearchBar handler={searchHandler}/>
@@ -91,7 +100,7 @@ export default function MovieContainer() {
                     {
                         movies.map( movie => {
                             return (
-                                <MoviePanel key={movie.imdbID} movieInfo={movie} button={nominationsButton} />
+                                <MoviePanel key={movie.imdbID} movieInfo={movie} handler={nominationsHandler}/>
                             )
                         })
                     }
