@@ -37,6 +37,11 @@ body {
     flex-direction: row;
 }
 
+/* .nominationsBar {
+    width: 200px;
+
+} */
+
 /* SearchBar */
 .searchBar {
     width: 50%;
@@ -45,7 +50,7 @@ body {
 
 /* MoviePanel */
 .card {
-    height: 450px;
+    height: 490px;
     margin-bottom: 15px;
 }
 

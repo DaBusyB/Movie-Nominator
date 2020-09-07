@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
 // Styles
-import { Container, Row, Button} from "reactstrap";
+import { Container, Row} from "reactstrap";
 import '../styles.css'
 
 // Import Components
@@ -14,30 +14,35 @@ export default function MovieContainer() {
     const [movies, setMovies] = useState([])
     const [titleSearch, setTitleSearch] = useState([])
 
+    const [nominations, setNominations] = useState([])
+    const [nominationSearch, setNominationSearch] = useState()
+
     //normalize all search events by replacing spaces with '+'
-    const normalizeSearchData = event => {
+    const normalizeData = event => {
         return event.replace(/\s/g, '+')
     }
 
     // search for our normalized event
     const searchHandler = event => {
-        console.log('search handler:', event.target.value)
-        setTitleSearch(normalizeSearchData(event.target.value))
+        setTitleSearch(normalizeData(event.target.value))
     }
 
     let count = 0;
     const nominationsButton = event => {
         event.target.classList.remove('btn-secondary')
 
-        if(count > -1 && count < 5 && event.target.classList.contains('counted') === false) {
+        setNominationSearch(normalizeData(event.target.nextElementSibling.innerText))
+
+        if(count >= 0 && count < 5 && event.target.classList.contains('counted') === false) {
             event.target.classList.toggle('button_toggle')
             event.target.classList.add('counted')
+
             count++
-            // console.log(count, event.target.classList.contains('counted'), event.target.classList)
         } else if(event.target.classList.contains('counted') === true) {
+            // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
+            // delete nominationsArr[]
             event.target.classList.remove('counted')
             count--
-            // console.log(count, event.target.classList.contains('counted'), event.target.classList)
         }
     }
 
@@ -60,6 +65,19 @@ export default function MovieContainer() {
             })
     }, [titleSearch])
 
+    useEffect(() => {
+        axios
+        .get(`http://omdbapi.com/?s=${nominationSearch}&apikey=82e86859`)
+            .then((res) => {
+                console.log('nominations', res.data.Search)
+                setNominations(res.data.Search)
+            })
+            .catch((err) => {
+                console.log('axios err:', err)
+                // setMovies(`${titleSearch} cannot be found, try again`)
+            })
+    }, [nominationSearch])
+
     return (
         <div className='search_movie_container'>
             <h1 className='title'>Shoppies Movie Nominations</h1>
@@ -68,11 +86,12 @@ export default function MovieContainer() {
 
             <Container className='container'>
                 <Row>
-                    <NominationsBar />
+                    <NominationsBar className='nominationsBar' nominationsInfo={nominations}/>
+
                     {
                         movies.map( movie => {
                             return (
-                                    <MoviePanel key={movie.imdbID} movieInfo={movie} button={nominationsButton} />
+                                <MoviePanel key={movie.imdbID} movieInfo={movie} button={nominationsButton} />
                             )
                         })
                     }

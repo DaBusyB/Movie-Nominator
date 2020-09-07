@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Styles
-import {Card, CardImg, CardBody, CardTitle, Button, Col} from 'reactstrap';
+import {Card, CardImg, CardBody, CardTitle, CardText, Button, Col} from 'reactstrap';
 import '../styles.css'
 
 // Import Components
@@ -13,15 +13,17 @@ const MoviePanel = props => {
         <Col xs='6' md='4' xl='3'>
             <Card className='card'>
                 <CardBody>
-                <Button 
-                    id='button' 
-                    onClick={props.button} 
-                    className='movie_panel_button'>
+                    <Button
+                        id='button'
+                        onClick={
+                            props.button
+                        }
+                        className='movie_panel_button'>
+                        {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}
+                    </Button>
 
-                    {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}
-                </Button>
-
-                <CardTitle className='cardTitle'>{props.movieInfo.Title} ({props.movieInfo.Year})</CardTitle>
+                    <CardTitle className= {props.movieInfo.imdbID}> {props.movieInfo.Title} </CardTitle>
+                    <CardText className='cardYear'>{props.movieInfo.Year}</CardText>
                     <CardImg top width='18.75%' src={props.movieInfo.Poster} alt='Movie poster picture' />
                 </CardBody>
             </Card>
