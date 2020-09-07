@@ -9,17 +9,16 @@ import '../styles.css'
 
 const MoviePanel = props => {
 
+
     return (
         <Col xs='6' md='4' xl='3'>
             <Card className='card'>
                 <CardBody>
                     <Button
                         id='button'
-                        onClick={
-                            props.handler
-                        }
-                        className='movie_panel_button'>
-                        {/* onClick={console.log({props.movieInfo.Title}, {props.button}) */}
+                        onClick={props.handler }
+                        className='movie_panel_button'
+                    >
                     </Button>
 
                     <CardTitle className= {props.movieInfo.imdbID}> {props.movieInfo.Title} </CardTitle>

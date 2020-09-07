@@ -27,33 +27,41 @@ export default function MovieContainer() {
         setTitleSearch(normalizeData(event.target.value))
     }
 
-    let nominationsArr =[]
-    const nominationsHandler = event => {
+const handler = (event) => {
+    let nominationsArr = [];
+    
+    const nominationsButtonHandler = () => {
+        let eventTarget = event.target.nextElementSibling
+        // console.log('nomBtn',nominationsArr, nominationsArr.length, target)
+        eventTarget.classList.remove('btn-secondary')
+        
+        if( eventTarget.classList.contains('counted') === false) {
+            eventTarget.classList.add('counted')
+            event.target.classList.toggle('button_toggle')
+            console.log(eventTarget.classList)
+        } 
+        else if(eventTarget.classList.contains('counted') === true) {
+            //     // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
+            //     // delete nominationsArr[]
+            event.target.classList.toggle('button_toggle')
+            eventTarget.classList.remove('counted')
+            console.log('remove counted', eventTarget.classList)
+            
+        }
+    }
+    
+    const nominationsAdder = event => {
         let nominatedMovie = event.target.nextElementSibling.innerText
         nominationsArr.push(normalizeData(nominatedMovie))
+        // console.log('nomArr',nominationsArr, nominationsArr.length)
         setNominationSearch(nominationsArr)
-        // console.log('inside',nominationsArr, nominationsArr.length)
-        return nominationsArr
+        nominationsButtonHandler(event)
+        return nominationsArr.length
     }
+    nominationsAdder(event)
+}
 
-    // let count = 0;
-    // const nominationsButton = event => {
-    //     event.target.classList.remove('btn-secondary')
-
-    //     setNominationSearch(normalizeData(event.target.nextElementSibling.innerText))
-
-    //     if(count >= 0 && count < 5 && event.target.classList.contains('counted') === false) {
-    //         event.target.classList.toggle('button_toggle')
-    //         event.target.classList.add('counted')
-
-    //         count++
-    //     } else if(event.target.classList.contains('counted') === true) {
-    //         // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
-    //         // delete nominationsArr[]
-    //         event.target.classList.remove('counted')
-    //         count--
-    //     }
-    // }
+    
 
     useEffect(() => {
         axios
@@ -100,7 +108,13 @@ export default function MovieContainer() {
                     {
                         movies.map( movie => {
                             return (
-                                <MoviePanel key={movie.imdbID} movieInfo={movie} handler={nominationsHandler}/>
+                                <MoviePanel
+                                    key={movie.imdbID}
+                                    movieInfo={movie}
+                                    handler={handler}
+                                    // nomAddHandler={nominationsAdder}
+                                    // buttonHandler={nominationsButtonHandler}
+                                />
                             )
                         })
                     }
