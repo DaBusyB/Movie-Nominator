@@ -30,36 +30,41 @@ export default function MovieContainer() {
     }
 
 const handler = (event) => {
-    
-    const nominationsButtonHandler = () => {
-        let eventTarget = event.target.nextElementSibling
-        // console.log('nomBtn',nominationsArr, nominationsArr.length, target)
-        eventTarget.classList.remove('btn-secondary')
-        
-        if( eventTarget.classList.contains('counted') === false) {
-            eventTarget.classList.add('counted')
-            event.target.classList.toggle('button_toggle')
-            console.log(eventTarget.classList)
-        } 
-        else if(eventTarget.classList.contains('counted') === true) {
-            //     // console.log('removeindex', nominationsArr, `index is ${nominationsArr.indexOf(cardTitle)}`)
-            //     // delete nominationsArr[]
-            event.target.classList.toggle('button_toggle')
-            eventTarget.classList.remove('counted')
-            console.log('remove counted', eventTarget.classList)
-        }
-        console.log(nominationsArr, nominationsArr.length)
-    }
+    let eventTarget = event.target.nextElementSibling
 
     const nominationsAdder = event => {
-        let nominatedMovie = event.target.nextElementSibling.innerText
+        let nominatedMovie = eventTarget.innerText
         nominationsArr.push(nominatedMovie)
         // console.log('nomArr',nominationsArr, nominationsArr.length)
         // setNominationSearch(nominationsArr)
-        nominationsButtonHandler(event)
+        // nominationsButtonHandler(event)
         return nominationsArr
     }
-    nominationsAdder(event)
+
+    const nominationsRemover = event => {
+
+        return nominationsArr
+    }
+
+    const nominationsButtonHandler = () => {
+        // console.log('nomBtn',nominationsArr, nominationsArr.length, target)
+        eventTarget.classList.remove('btn-secondary')
+
+        if( eventTarget.classList.contains('nominated') === false) {
+            eventTarget.classList.add('nominated')
+            event.target.classList.toggle('button_toggle')
+            console.log(eventTarget.classList)
+            nominationsAdder()
+        }
+        else if(eventTarget.classList.contains('nominated') === true) {
+            event.target.classList.toggle('button_toggle')
+            eventTarget.classList.remove('nominated')
+            console.log(eventTarget.classList)
+            nominationsRemover()
+        }
+    }
+
+    nominationsButtonHandler(event)
 }
 // console.log('nominationSearch', nominationSearch)
 

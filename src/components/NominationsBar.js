@@ -50,4 +50,3 @@ const NominationsBar = props => {
 }
 
 export default NominationsBar
-git
