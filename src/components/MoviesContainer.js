@@ -17,6 +17,8 @@ export default function MovieContainer() {
     const [nominations, setNominations] = useState([])
     const [nominationSearch, setNominationSearch] = useState([])
 
+    var nominationsArr=[];
+
     //normalize all search events by replacing spaces with '+'
     const normalizeData = event => {
         return event.replace(/\s/g, '+')
@@ -28,7 +30,6 @@ export default function MovieContainer() {
     }
 
 const handler = (event) => {
-    let nominationsArr = [];
     
     const nominationsButtonHandler = () => {
         let eventTarget = event.target.nextElementSibling
@@ -46,22 +47,21 @@ const handler = (event) => {
             event.target.classList.toggle('button_toggle')
             eventTarget.classList.remove('counted')
             console.log('remove counted', eventTarget.classList)
-            
         }
+        console.log(nominationsArr, nominationsArr.length)
     }
-    
+
     const nominationsAdder = event => {
         let nominatedMovie = event.target.nextElementSibling.innerText
-        nominationsArr.push(normalizeData(nominatedMovie))
+        nominationsArr.push(nominatedMovie)
         // console.log('nomArr',nominationsArr, nominationsArr.length)
-        setNominationSearch(nominationsArr)
+        // setNominationSearch(nominationsArr)
         nominationsButtonHandler(event)
-        return nominationsArr.length
+        return nominationsArr
     }
     nominationsAdder(event)
 }
-
-    
+// console.log('nominationSearch', nominationSearch)
 
     useEffect(() => {
         axios
@@ -103,7 +103,10 @@ const handler = (event) => {
 
             <Container className='container'>
                 <Row>
-                    <NominationsBar className='nominationsBar' nominationsInfo={nominations}/>
+                    <NominationsBar 
+                        className='nominationsBar' 
+                        nomineeInfo={nominations}
+                    />
 
                     {
                         movies.map( movie => {
@@ -112,8 +115,6 @@ const handler = (event) => {
                                     key={movie.imdbID}
                                     movieInfo={movie}
                                     handler={handler}
-                                    // nomAddHandler={nominationsAdder}
-                                    // buttonHandler={nominationsButtonHandler}
                                 />
                             )
                         })

@@ -37,10 +37,10 @@ body {
     flex-direction: row;
 }
 
-/* .nominationsBar {
-    width: 200px;
+.nominationsBar {
+    width: 250px;
 
-} */
+}
 
 /* SearchBar */
 .searchBar {
