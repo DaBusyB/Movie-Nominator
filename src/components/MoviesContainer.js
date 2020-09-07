@@ -15,7 +15,7 @@ export default function MovieContainer() {
     const [titleSearch, setTitleSearch] = useState([])
 
     const [nominations, setNominations] = useState([])
-    const [nominationSearch, setNominationSearch] = useState([])
+    // const [nominationSearch, setNominationSearch] = useState([])
 
     var nominationsArr=[];
 
@@ -32,35 +32,30 @@ export default function MovieContainer() {
 const handler = (event) => {
     let eventTarget = event.target.nextElementSibling
 
-    const nominationsAdder = event => {
-        let nominatedMovie = eventTarget.innerText
-        nominationsArr.push(nominatedMovie)
-        // console.log('nomArr',nominationsArr, nominationsArr.length)
-        // setNominationSearch(nominationsArr)
-        // nominationsButtonHandler(event)
+    const nominationsAdder = () => {
+        nominationsArr.push(eventTarget.innerText)
         return nominationsArr
     }
 
-    const nominationsRemover = event => {
-
+    const nominationsRemover = () => {
+        nominationsArr.filter((nominees, index, arr) => index !== arr.indexOf(eventTarget.innerText))
         return nominationsArr
     }
 
     const nominationsButtonHandler = () => {
-        // console.log('nomBtn',nominationsArr, nominationsArr.length, target)
         eventTarget.classList.remove('btn-secondary')
 
         if( eventTarget.classList.contains('nominated') === false) {
             eventTarget.classList.add('nominated')
             event.target.classList.toggle('button_toggle')
-            console.log(eventTarget.classList)
             nominationsAdder()
+            setNominations(nominationsArr)
         }
         else if(eventTarget.classList.contains('nominated') === true) {
             event.target.classList.toggle('button_toggle')
             eventTarget.classList.remove('nominated')
-            console.log(eventTarget.classList)
             nominationsRemover()
+            setNominations(nominationsArr)
         }
     }
 
@@ -108,8 +103,8 @@ const handler = (event) => {
 
             <Container className='container'>
                 <Row>
-                    <NominationsBar 
-                        className='nominationsBar' 
+                    <NominationsBar
+                        className='nominationsBar'
                         nomineeInfo={nominations}
                     />
 
