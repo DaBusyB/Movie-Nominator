@@ -1,38 +1,33 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios'
 
 // Styles
-import {Card, CardImg, CardBody, CardTitle, CardText, Button, Col} from 'reactstrap';
+import {Col} from 'reactstrap';
 import SideNav, { NavItem, NavText, } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '../styles.css'
 
 
 const NominationsBar = props => {
-
+    // const [nominees, setNominee] = useState([])
+    // setNominee(props.nomineeInfo)
 
     return (
 
-        <SideNav
-            onSelect={(selected) => {
-             // Add your code here
-            }}
-        >
+        <SideNav>
 
             <SideNav.Toggle  />
-            <SideNav.Nav defaultSelected="home" >
-                <NavItem eventKey="home" >
-                    <NavText className='navText'>Your Nominations</NavText>
-                    <Col xs='6' md='4' xl='3' className='nominees_container'>
-                        {
-                            props.nomineeInfo.map( nominee => {
-                                return (
-                                    <div> {nominee} </div>
-                                )
-                            })
-                        }
-                    </Col>
-                </NavItem>
+            <SideNav.Nav >
+                <h1>Nominees</h1>
+                                {console.log('props', props.nomineeInfo)}
+                <div>
+                    {
+                        props.nomineeInfo.map( nominee => {
+                            return (
+                                <button className='nominees_btn'> {nominee} </button>
+                            )
+                        })
+                    }
+                </div>
             </SideNav.Nav>
 
         </SideNav>

@@ -15,9 +15,8 @@ export default function MovieContainer() {
     const [titleSearch, setTitleSearch] = useState([])
 
     const [nominations, setNominations] = useState([])
-    // const [nominationSearch, setNominationSearch] = useState([])
 
-    var nominationsArr=[];
+    const nominationsArr = nominations;
 
     //normalize all search events by replacing spaces with '+'
     const normalizeData = event => {
@@ -29,45 +28,45 @@ export default function MovieContainer() {
         setTitleSearch(normalizeData(event.target.value))
     }
 
-const handler = (event) => {
-    let eventTarget = event.target.nextElementSibling
+    const handler = (event) => {
+        let movieTitle = event.target.nextElementSibling
+        let moviePanelButton =  event.target
 
-    const nominationsAdder = () => {
-        nominationsArr.push(eventTarget.innerText)
-        return nominationsArr
-    }
-
-    const nominationsRemover = () => {
-        nominationsArr.filter((nominees, index, arr) => index !== arr.indexOf(eventTarget.innerText))
-        return nominationsArr
-    }
-
-    const nominationsButtonHandler = () => {
-        eventTarget.classList.remove('btn-secondary')
-
-        if( eventTarget.classList.contains('nominated') === false) {
-            eventTarget.classList.add('nominated')
-            event.target.classList.toggle('button_toggle')
-            nominationsAdder()
-            setNominations(nominationsArr)
+        const nominationsAdder = () => {
+            return nominationsArr.push(movieTitle.innerText)
         }
-        else if(eventTarget.classList.contains('nominated') === true) {
-            event.target.classList.toggle('button_toggle')
-            eventTarget.classList.remove('nominated')
-            nominationsRemover()
-            setNominations(nominationsArr)
-        }
-    }
 
-    nominationsButtonHandler(event)
-}
-// console.log('nominationSearch', nominationSearch)
+        const nominationsRemover = () => {
+            return nominationsArr.filter((_nominees, index, arr) => index !== arr.indexOf(movieTitle.innerText))
+        }
+    // console.log('here 2', nominations)
+
+        const nominationsButtonHandler = () => {
+            movieTitle.classList.remove('btn-secondary')
+            
+                if( (nominations.length >= 0 && nominations.length <= 5) && movieTitle.classList.contains('nominated') === false) {
+                    movieTitle.classList.add('nominated')
+                    moviePanelButton.classList.toggle('button_toggle')
+                    nominationsAdder()
+                    setNominations(nominationsArr)
+                    console.log(nominationsArr)
+                }
+            else if(movieTitle.classList.contains('nominated') === true) {
+                movieTitle.classList.remove('nominated')
+                moviePanelButton.classList.toggle('button_toggle')
+                nominationsRemover()
+                setNominations(nominationsArr)
+                console.log(nominationsArr)
+            }
+        }
+
+        nominationsButtonHandler(event)
+    }
 
     useEffect(() => {
         axios
         .get(`http://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
             .then((res) => {
-                // console.log('axios success:', res.data.Search)
 
                 res.data.Search === undefined ?
                     // res.data.Search will be undefined at times while searching
@@ -77,23 +76,9 @@ const handler = (event) => {
                     setMovies(res.data.Search)
             })
             .catch((err) => {
-                // console.log('axios err:', err)
-                // setMovies(`${titleSearch} cannot be found, try again`)
+                console.log('axios err:', err)
             })
     }, [titleSearch])
-
-    // useEffect(() => {
-    //     axios
-    //     .get(`http://omdbapi.com/?s=${nominationSearch}&apikey=82e86859`)
-    //         .then((res) => {
-    //             console.log('nominations', res.data.Search)
-    //             setNominations(res.data.Search)
-    //         })
-    //         .catch((err) => {
-    //             console.log('axios err:', err)
-    //             // setMovies(`${titleSearch} cannot be found, try again`)
-    //         })
-    // }, [nominationSearch])
 
     return (
         <div className='movie_container'>

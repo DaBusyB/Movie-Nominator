@@ -101,14 +101,16 @@ body {
     pointer-events: none;
 }
 
-/* Nominations */
-.nomination_container {
-    margin-top: 264px;
-    height: 1500px;
-    border-radius: 5px;
-}
+/* NominationsBar */
 
-.nominees_container {
+.nominees_btn {
     display: flex;
     flex-direction: column;
+    border: 2px solid blue;
+    height:100px;
+    width: 100%;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size: 25px;
 }
+
