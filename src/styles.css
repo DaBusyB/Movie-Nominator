@@ -39,7 +39,6 @@ body {
 
 .nominationsBar {
     width: 250px;
-
 }
 
 /* SearchBar */
@@ -55,7 +54,6 @@ body {
 }
 
 .cardTitle {
-    /* border: 1px solid red; */
     text-align: center;
 }
 
@@ -110,7 +108,7 @@ body {
 
 .side_nav {
     width: 250px;
-    margin-top: 265px;
+    margin-top: 264px;
     border-radius: 5px;
 }
 
