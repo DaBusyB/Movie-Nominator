@@ -13,17 +13,17 @@ const NominationsBar = props => {
 
     return (
 
-        <SideNav>
+        <SideNav className='side_nav'>
 
             <SideNav.Toggle  />
             <SideNav.Nav >
-                <h1>Nominees</h1>
+                <h1 className='side_nav_title'>Nominees</h1>
                                 {console.log('props', props.nomineeInfo)}
-                <div>
+                <div className='nomineescontainer'>
                     {
                         props.nomineeInfo.map( nominee => {
                             return (
-                                <button className='nominees_btn'> {nominee} </button>
+                                <button className='nominee_box'> {nominee} </button>
                             )
                         })
                     }

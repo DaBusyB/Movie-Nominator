@@ -43,7 +43,7 @@ export default function MovieContainer() {
 
         const nominationsButtonHandler = () => {
             movieTitle.classList.remove('btn-secondary')
-            
+
                 if( (nominations.length >= 0 && nominations.length <= 5) && movieTitle.classList.contains('nominated') === false) {
                     movieTitle.classList.add('nominated')
                     moviePanelButton.classList.toggle('button_toggle')

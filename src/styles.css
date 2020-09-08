@@ -102,15 +102,33 @@ body {
 }
 
 /* NominationsBar */
+.side_nav_title {
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+}
 
-.nominees_btn {
+.side_nav {
+    width: 250px;
+}
+
+.nomineescontainer {
     display: flex;
     flex-direction: column;
-    border: 2px solid blue;
-    height:100px;
-    width: 100%;
-    margin-bottom: 50px;
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.nominee_box {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 50px;
     font-weight: bold;
     font-size: 25px;
+    border-radius: 5px;
+    border: none;
 }
 
