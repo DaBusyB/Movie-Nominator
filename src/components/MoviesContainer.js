@@ -82,7 +82,7 @@ export default function MovieContainer() {
 
     return (
         <div className='movie_container'>
-            <h1 className='title'>Shoppies Movie Nominations</h1>
+            <h1 className='title'>Movie Nominations</h1>
 
             <SearchBar handler={searchHandler}/>
 

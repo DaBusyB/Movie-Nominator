@@ -107,9 +107,10 @@ body {
 }
 
 .side_nav {
-    width: 250px;
+    width: 240px;
     margin-top: 264px;
     border-radius: 5px;
+    height: 900px;
 }
 
 .nomineescontainer {
