@@ -65,7 +65,7 @@ export default function MovieContainer() {
 
     useEffect(() => {
         axios
-        .get(`http://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
+        .get(`https://omdbapi.com/?s=${titleSearch}&apikey=82e86859`)
             .then((res) => {
 
                 res.data.Search === undefined ?

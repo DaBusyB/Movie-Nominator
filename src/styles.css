@@ -122,6 +122,7 @@ body {
 }
 
 .nominee_box {
+    color: white;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -130,5 +131,7 @@ body {
     font-size: 25px;
     border-radius: 5px;
     border: none;
+    background-color: #DB3D44;
+    align-items: center;
 }
 
