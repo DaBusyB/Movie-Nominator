@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 // Styles
-import {Col} from 'reactstrap';
-import SideNav, { NavItem, NavText, } from '@trendmicro/react-sidenav';
+import SideNav from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '../styles.css'
 
