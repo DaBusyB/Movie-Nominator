@@ -110,6 +110,8 @@ body {
 
 .side_nav {
     width: 250px;
+    margin-top: 265px;
+    border-radius: 5px;
 }
 
 .nomineescontainer {
