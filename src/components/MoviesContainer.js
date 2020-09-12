@@ -16,7 +16,7 @@ export default function MovieContainer() {
 
     const [nominations, setNominations] = useState([])
 
-    const nominationsArr = nominations;
+    let nominationsArr = nominations;
 
     //normalize all search events by replacing spaces with '+'
     const normalizeData = event => {
@@ -33,33 +33,37 @@ export default function MovieContainer() {
         let moviePanelButton =  event.target
 
         const nominationsAdder = () => {
-            return nominationsArr.push(movieTitle.innerText)
+            if(!nominationsArr.includes(movieTitle.innerText)) {
+                nominationsArr.push(movieTitle.innerText)
+            }
         }
 
         const nominationsRemover = () => {
-            return nominationsArr.filter((_nominees, index, arr) => index !== arr.indexOf(movieTitle.innerText))
+            if(nominationsArr.includes(movieTitle.innerText)) {
+                nominationsArr = nominationsArr.filter(nominee => nominee !== movieTitle.innerText)
+            }
         }
-    // console.log('here 2', nominations)
 
         const nominationsButtonHandler = () => {
             movieTitle.classList.remove('btn-secondary')
 
-                if( (nominations.length >= 0 && nominations.length <= 5) && movieTitle.classList.contains('nominated') === false) {
-                    movieTitle.classList.add('nominated')
-                    moviePanelButton.classList.toggle('button_toggle')
-                    nominationsAdder()
-                    setNominations(nominationsArr)
-                    console.log(nominationsArr)
-                }
+            if( (nominations.length >= 0 && nominations.length <= 5) &&
+                movieTitle.classList.contains('nominated') === false &&
+                !nominationsArr.includes(movieTitle.innerText ) )
+            {
+                movieTitle.classList.add('nominated')
+                moviePanelButton.classList.toggle('button_toggle')
+                nominationsAdder()
+                setNominations(nominationsArr)
+            }
+
             else if(movieTitle.classList.contains('nominated') === true) {
                 movieTitle.classList.remove('nominated')
                 moviePanelButton.classList.toggle('button_toggle')
                 nominationsRemover()
                 setNominations(nominationsArr)
-                console.log(nominationsArr)
             }
         }
-
         nominationsButtonHandler(event)
     }
 
