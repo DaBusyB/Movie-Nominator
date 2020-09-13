@@ -8,7 +8,9 @@
 
 > Nominate Your Top 5 Favorite Movies for a Movie Award!
 
-### 🏠 [Homepage](https://shoppies-brandiapetsi.vercel.app/)
+### 🏠 [Homepage](https://movies-nominator.vercel.app/)
+
+### 💔 [CURRENT ISSUES] (https://github.com/DaBusyB/Movie-Nominator/issues)
 
 ## Install
 
