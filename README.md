@@ -10,7 +10,7 @@
 
 ### 🏠 [Homepage](https://movies-nominator.vercel.app/)
 
-### 💔 [CURRENT ISSUES] (https://github.com/DaBusyB/Movie-Nominator/issues)
+### 💔 [CURRENT ISSUES](https://github.com/DaBusyB/Movie-Nominator/issues)
 
 ## Install
 
