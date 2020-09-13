@@ -34,7 +34,7 @@ yarn run test
 
 👤 **Brandi Apetsi**
 
-* Website: BrandiApetsi.com
+* Website: [BrandiApetsi.com](https://BrandiApetsi.com)
 * Twitter: [@DaBusyB](https://twitter.com/DaBusyB)
 * Github: [@DaBusyB](https://github.com/DaBusyB)
 * LinkedIn: [@brandi-apetsi](https://linkedin.com/in/brandi-apetsi)
