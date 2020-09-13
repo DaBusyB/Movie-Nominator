@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 // Styles
 import SideNav from '@trendmicro/react-sidenav';
@@ -7,10 +7,7 @@ import '../styles.css'
 
 
 const NominationsBar = props => {
-    const [nominees, setNominee] = useState(props.nomineeInfo)
-    
-    // console.log(nominees)
-    
+
 
     return (
 
@@ -21,13 +18,14 @@ const NominationsBar = props => {
                 <h1 className='side_nav_title'>Nominees</h1>
                                 
                 <div className='nomineescontainer'>
+                    {console.log('the nominees are', props.nomineeInfo)}
                     {
                         props.nomineeInfo.map( nominee => {
                             return (
                                 <button key={nominee} className='nominee_box'> {nominee} </button>
                             )
                         })
-                    }
+                    } 
                 </div>
             </SideNav.Nav>
 

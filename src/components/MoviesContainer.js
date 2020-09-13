@@ -16,8 +16,6 @@ export default function MovieContainer() {
 
     const [nominations, setNominations] = useState([])
 
-    let nominationsArr = nominations;
-
     //normalize all search events by replacing spaces with '+'
     const normalizeData = event => {
         return event.replace(/\s/g, '+')
@@ -28,7 +26,9 @@ export default function MovieContainer() {
         setTitleSearch(normalizeData(event.target.value))
     }
 
-    const handler = (event) => {
+    const buttonHandler = (event) => {
+        let nominationsArr = nominations;
+
         let movieTitle = event.target.nextElementSibling
         let moviePanelButton =  event.target
 
@@ -47,9 +47,9 @@ export default function MovieContainer() {
         const nominationsButtonHandler = () => {
             movieTitle.classList.remove('btn-secondary')
 
-            if( (nominations.length >= 0 && nominations.length <= 5) &&
-                movieTitle.classList.contains('nominated') === false &&
-                !nominationsArr.includes(movieTitle.innerText ) )
+            if( (nominations.length >= 0 && nominations.length < 5 ) &&
+            movieTitle.classList.contains('nominated') === false &&
+            !nominationsArr.includes(movieTitle.innerText ) )
             {
                 movieTitle.classList.add('nominated')
                 moviePanelButton.classList.toggle('button_toggle')
@@ -73,8 +73,6 @@ export default function MovieContainer() {
             .then((res) => {
 
                 res.data.Search === undefined ?
-                    // res.data.Search will be undefined at times while searching
-                    // here we provide something for users to see until search returns something
                     setTitleSearch(`star+wars`)
                 :
                     setMovies(res.data.Search)
@@ -82,7 +80,7 @@ export default function MovieContainer() {
             .catch((err) => {
                 console.log('axios err:', err)
             })
-    }, [titleSearch])
+    }, [titleSearch, nominations])
 
     return (
         <div className='movie_container'>
@@ -90,12 +88,12 @@ export default function MovieContainer() {
 
             <SearchBar handler={searchHandler}/>
 
+            <NominationsBar
+                className='nominationsBar'
+                nomineeInfo={nominations}
+            />
             <Container className='container'>
                 <Row>
-                    <NominationsBar
-                        className='nominationsBar'
-                        nomineeInfo={nominations}
-                    />
 
                     {
                         movies.map( movie => {
@@ -103,7 +101,7 @@ export default function MovieContainer() {
                                 <MoviePanel
                                     key={movie.imdbID}
                                     movieInfo={movie}
-                                    handler={handler}
+                                    handler={buttonHandler}
                                 />
                             )
                         })
